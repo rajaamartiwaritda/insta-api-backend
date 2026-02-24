@@ -47,7 +47,7 @@ def get_data():
     full_text_to_search = ""
 
     # ==========================================
-    # 1. INSTAGRAM SCRAPING (Timer 90s + 30 Days Logic)
+    # 1. INSTAGRAM SCRAPING (Timer 50s + 30 Days Logic)
     # ==========================================
     try:
         L = instaloader.Instaloader()
@@ -65,12 +65,11 @@ def get_data():
             likes, comments, post_count = 0, 0, 0
 
             for post in profile.get_posts():
-                # 1. Agar 30 din ki post ya 30 posts ho gayi toh ruk jao
                 if post.date < thirty_days_ago or post_count >= 30:
                     break
                 
-                # 2. 🚨 THE MAGIC HACK: 90 seconds hone par turant ruk jao
-                if time.time() - script_start_time > 90:
+                # 🚨 THE MAGIC HACK: 50 seconds hone par turant ruk jao (Hostinger 60s limit se bachne ke liye)
+                if time.time() - script_start_time > 50:
                     result["ig_status"] = f"Success (Auto-stopped at {post_count} posts due to time limit)"
                     break
 
@@ -105,7 +104,7 @@ def get_data():
     # ==========================================
     # 3. YOUTUBE SCRAPING
     # ==========================================
-    if yt_links and (time.time() - script_start_time < 95): # Time bacha hai (95s se kam) tabhi karo
+    if yt_links and (time.time() - script_start_time < 53): # Time bacha hai tabhi karo
         yt_url = yt_links[0]
         result["yt_data"]["url"] = yt_url
         try:
@@ -125,7 +124,7 @@ def get_data():
     # ==========================================
     # 4. FACEBOOK SCRAPING
     # ==========================================
-    if fb_links and (time.time() - script_start_time < 98): # Time bacha hai (98s se kam) tabhi karo
+    if fb_links and (time.time() - script_start_time < 55): # Time bacha hai tabhi karo
         fb_url = fb_links[0]
         result["fb_data"]["url"] = fb_url
         try:
