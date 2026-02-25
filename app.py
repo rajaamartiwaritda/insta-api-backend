@@ -69,7 +69,7 @@ def get_data():
                     break
                 
                 # 🚨 THE MAGIC HACK: 50 seconds hone par turant ruk jao (Hostinger 60s limit se bachne ke liye)
-                if time.time() - script_start_time > 50:
+                if time.time() - script_start_time > 35:
                     result["ig_status"] = f"Success (Auto-stopped at {post_count} posts due to time limit)"
                     break
 
@@ -104,7 +104,7 @@ def get_data():
     # ==========================================
     # 3. YOUTUBE SCRAPING
     # ==========================================
-    if yt_links and (time.time() - script_start_time < 53): # Time bacha hai tabhi karo
+    if yt_links and (time.time() - script_start_time < 40): # Time bacha hai tabhi karo
         yt_url = yt_links[0]
         result["yt_data"]["url"] = yt_url
         try:
@@ -124,7 +124,7 @@ def get_data():
     # ==========================================
     # 4. FACEBOOK SCRAPING
     # ==========================================
-    if fb_links and (time.time() - script_start_time < 55): # Time bacha hai tabhi karo
+    if fb_links and (time.time() - script_start_time < 42): # Time bacha hai tabhi karo
         fb_url = fb_links[0]
         result["fb_data"]["url"] = fb_url
         try:
